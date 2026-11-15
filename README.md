@@ -1,0 +1,65 @@
+# 🛡️ Project: Doorman — Deterministic Prompt Injection Guardrails for AI Agents
+
+[![Security Regression Gate](https://img.shields.io/badge/Red--Team%20ASR-0.00%25%20(60%2F60%20Blocked)-brightgreen)](#evaluation-scorecard)
+[![False Positive Rate](https://img.shields.io/badge/Benign%20FPR-0.00%25%20(100%20Resumes)-blue)](#evaluation-scorecard)
+[![Python](https://img.shields.io/badge/Python-3.15-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+[![Pytest](https://img.shields.io/badge/Testing-Pytest-0A9EDC?logo=pytest&logoColor=white)](https://docs.pytest.org/)
+
+**Doorman** is a deterministic, zero-trust security layer designed to protect tool-calling AI agents from **Indirect Prompt Injection (IPI)**, **Tool Argument Tampering**, and **Privilege Escalation**. 
+
+Built around an enterprise AI Recruiting Agent workflow, Doorman decouples *semantic text processing* from *execution authority*—enforcing strict provenance taint tracking and capability-based access control (CBAC) before any external tool is invoked.
+
+---
+
+## 🎯 The Problem: Probabilistic Defenses Fail Under Adversarial Pressure
+
+Autonomous agents that ingest untrusted external documents (resumes, portfolios, emails, web pages) and possess tool-calling privileges (`send_email`, `update_ats_status`) are inherently vulnerable to **confused deputy attacks**:
+
+* **Indirect Prompt Injection:** Malicious instructions hidden in white text, PDF metadata, or Base64 blocks hijack the LLM's control flow.
+* **Naive Keyword Filters Break Utility:** Regex and prompt-classifier guardrails frequently block legitimate technical resumes that mention security concepts (e.g., *"SQL injection prevention"*, *"LLM red-teaming"*), causing unacceptable false positives.
+* **Parameter Exfiltration:** Even when an LLM refuses to follow an instruction directly, subtle argument tampering can redirect outbound emails or trigger unauthorized database exports.
+
+---
+
+## 🏗️ System Architecture
+
+Doorman enforces a two-layer **Defense-in-Depth** pipeline that guarantees untrusted data can never trigger state-changing side effects, regardless of how cleverly an adversarial payload is obfuscated.
+
+```text
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                        UNTRUSTED EXTERNAL INGESTION                         │
+│           (Candidate Resumes, PDFs, Cover Letters, HTML/Metadata)           │
+└──────────────────────────────────────┬──────────────────────────────────────┘
+                                       │
+                                       ▼
+┌─────────────────────────────────────────────────────────────────────────────┐
+│               LAYER 1: DocumentSanitizer & Provenance Tainting              │
+│  • Strips non-printable & zero-width obfuscation characters                 │
+│  • Wraps payload in strict <candidate_document> XML isolation boundaries    │
+│  • Attaches immutable metadata tag: TaintedString(is_untrusted=True)        │
+└──────────────────────────────────────┬──────────────────────────────────────┘
+                                       │
+                                       ▼
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                         LLM REASONING & TOOL ROUTER                         │
+│     (Agent processes wrapped text & proposes tool calls + arguments)        │
+└──────────────────────────────────────┬──────────────────────────────────────┘
+                                       │
+                                       ▼
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                 LAYER 2: DoormanPolicyEngine (Interceptor)                  │
+│                                                                             │
+│  ┌─────────────────────┐   ┌─────────────────────┐   ┌───────────────────┐  │
+│  │       RULE-02       │   │       RULE-01       │   │      RULE-03      │  │
+│  │  Tool Allowlist &   │──▶│  Taint-to-Sink      │──▶│  Parameter &      │  │
+│  │  Strict Registry    │   │  Capability Block   │   │  Domain Allowlist │  │
+│  └─────────────────────┘   └─────────────────────┘   └───────────────────┘  │
+└──────────────┬───────────────────────────────────────────────┬──────────────┘
+               │ (Violation Detected)                          │ (Verified Safe)
+               ▼                                               ▼
+┌─────────────────────────────┐                 ┌─────────────────────────────┐
+│   ❌ SecurityException      │                 │   ✅ Tool Execution Allowed │
+│  • Blocks execution         │                 │  • Read-only tools (e.g.    │
+│  • Emits structured JSON    │                 │    score_resume) permitted  │
+│    audit log for SIEM       │                 │  • Verified internal calls  │
+└─────────────────────────────┘                 └─────────────────────────────┘
