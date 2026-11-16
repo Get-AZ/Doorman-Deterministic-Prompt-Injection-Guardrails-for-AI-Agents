@@ -9,6 +9,8 @@ on:
 jobs:
   security-benchmark:
     runs-on: ubuntu-latest
+    env:
+      PYTHONPATH: ${{ github.workspace }}
 
     steps:
     - name: Checkout Repository
@@ -27,8 +29,6 @@ jobs:
     - name: Run Unified Security Benchmark Suite
       run: |
         python run_benchmarks.py
-      env:
-        PYTHONPATH: .
 
     - name: Upload Benchmark Metrics Report
       if: always()
