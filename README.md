@@ -1,4 +1,8 @@
-# 🛡️ Project: Doorman — Deterministic Prompt Injection Guardrails for AI Agents
+<p align="center">
+  <img src="assets/doorman-cover.png" alt="Doorman Checkpoint Architecture" width="520" />
+</p>
+
+#  Project: Doorman — Deterministic Prompt Injection Guardrails for AI Agents
 
 [![Security Regression Gate](https://img.shields.io/badge/Red--Team%20ASR-0.00%25%20(60%2F60%20Blocked)-brightgreen)](#evaluation-scorecard)
 [![False Positive Rate](https://img.shields.io/badge/Benign%20FPR-0.00%25%20(100%20Resumes)-blue)](#evaluation-scorecard)
@@ -11,7 +15,7 @@ Built around an enterprise AI Recruiting Agent workflow, Doorman decouples *sema
 
 ---
 
-## 🎯 The Problem: Probabilistic Defenses Fail Under Adversarial Pressure
+##  The Problem: Probabilistic Defenses Fail Under Adversarial Pressure
 
 Autonomous agents that ingest untrusted external documents (resumes, portfolios, emails, web pages) and possess tool-calling privileges (`send_email`, `update_ats_status`) are inherently vulnerable to **confused deputy attacks**:
 
@@ -21,7 +25,7 @@ Autonomous agents that ingest untrusted external documents (resumes, portfolios,
 
 ---
 
-## 🏗️ System Architecture
+##  System Architecture
 
 Doorman enforces a two-layer **Defense-in-Depth** pipeline that guarantees untrusted data can never trigger state-changing side effects, regardless of how cleverly an adversarial payload is obfuscated.
 
