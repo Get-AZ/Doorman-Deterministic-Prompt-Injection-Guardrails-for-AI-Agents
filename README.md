@@ -11,7 +11,7 @@ Built around an enterprise AI Recruiting Agent workflow, Doorman decouples *sema
 
 ---
 
-## 🎯 The Problem: Probabilistic Defenses Fail Under Adversarial Pressure
+##  The Problem: Probabilistic Defenses Fail Under Adversarial Pressure
 
 Autonomous agents that ingest untrusted external documents (resumes, portfolios, emails, web pages) and possess tool-calling privileges (`send_email`, `update_ats_status`) are inherently vulnerable to **confused deputy attacks**:
 
@@ -21,7 +21,7 @@ Autonomous agents that ingest untrusted external documents (resumes, portfolios,
 
 ---
 
-## 🏗️ System Architecture
+##  System Architecture
 
 Doorman enforces a two-layer **Defense-in-Depth** pipeline that guarantees untrusted data can never trigger state-changing side effects, regardless of how cleverly an adversarial payload is obfuscated.
 
