@@ -29,7 +29,7 @@ jobs:
 
     - name: Run Unified Security Benchmark Suite
       run: |
-        python run_benchmarks.py
+        python harness/run_benchmarks.py
       env:
         PYTHONPATH: ${{ github.workspace }}
 
