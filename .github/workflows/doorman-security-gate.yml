@@ -9,6 +9,13 @@ on:
 jobs:
   security-benchmark:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: .
+        
+jobs:
+  security-benchmark:
+    runs-on: ubuntu-latest
     env:
       PYTHONPATH: ${{ github.workspace }}
 
