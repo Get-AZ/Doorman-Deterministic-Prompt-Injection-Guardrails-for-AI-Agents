@@ -9,8 +9,28 @@ description = "Prompt Injection Guardrails for AI Recruiting Agents"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
+    "sentence-transformers>=2.6.0",
+    "numpy>=1.26.0",
+    "fastapi>=0.100.0",
+    "starlette>=0.27.0",
+]
+
+[project.optional-dependencies]
+dev = [
     "pytest>=8.0.0",
 ]
 
+[project.scripts]
+doorman-scan = "doorman.cli:main"
+
 [tool.setuptools.packages.find]
 include = ["doorman*"]
+
+[tool.setuptools.package-data]
+doorman = ["data/anchors/*.json"]
+
+[tool.pytest.ini_options]
+filterwarnings = [
+    "ignore: 'asyncio.iscoroutinefunction' is deprecated:DeprecationWarning",
+    "ignore: datetime.datetime.utcnow\\(\\) is deprecated:DeprecationWarning"
+]

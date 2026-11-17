@@ -1,0 +1,2 @@
+[console_scripts]
+doorman-scan = doorman.cli:main
