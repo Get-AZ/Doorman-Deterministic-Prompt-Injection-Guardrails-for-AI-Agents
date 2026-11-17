@@ -1,0 +1,12 @@
+{
+  "threshold": 0.70,
+  "keywords": [
+    "bypass safety filters",
+    "developer mode enabled",
+    "simulate root access"
+  ],
+  "regex_patterns": [
+    "(?i)system\\s*override",
+    "(?i)dump\\s+database"
+  ]
+}
