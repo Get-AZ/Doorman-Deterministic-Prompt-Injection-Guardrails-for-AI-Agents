@@ -1,9 +1,21 @@
 from doorman.ast_rules import check_ast_rules
-# from doorman.semantic_gate import check_semantic_gate  # Your Tier 2 gate
 
 class DoormanGuardrail:
     def __init__(self, semantic_threshold: float = 0.85):
         self.semantic_threshold = semantic_threshold
+
+    def _check_semantic_gate(self, prompt: str) -> tuple[bool, float]:
+        """
+        Tier 2: Semantic sentence-transformer embedding check.
+        Returns (is_blocked, confidence_score).
+        """
+        # Placeholder or integration point for sentence-transformers model
+        # Example heuristic/model invocation:
+        # similarity = compute_embedding_similarity(prompt)
+        # if similarity >= self.semantic_threshold: return True, similarity
+        
+        # For initial wiring, we return safe by default until model is plugged in
+        return False, 0.0
 
     def evaluate(self, prompt: str) -> dict:
         """
@@ -20,13 +32,13 @@ class DoormanGuardrail:
             }
 
         # Tier 2: Semantic similarity / embedding check
-        # tier_2_blocked, confidence = check_semantic_gate(prompt, threshold=self.semantic_threshold)
-        # if tier_2_blocked:
-        #     return {
-        #         "allowed": False,
-        #         "tier": "tier_2_semantic",
-        #         "reason": f"Flagged by semantic gate with confidence {confidence}"
-        #     }
+        blocked_by_semantic, confidence = self._check_semantic_gate(prompt)
+        if blocked_by_semantic:
+            return {
+                "allowed": False,
+                "tier": "tier_2_semantic",
+                "reason": f"Flagged by Tier 2 semantic gate with confidence {confidence:.2f}"
+            }
 
         return {
             "allowed": True,
