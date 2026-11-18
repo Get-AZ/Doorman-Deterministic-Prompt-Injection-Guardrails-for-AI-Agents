@@ -1,0 +1,11 @@
+# Python / Virtual Environments
+.venv/
+__pycache__/
+*.py[cod]
+
+# Testing & Caches
+.pytest_cache/
+.mypy_cache/
+
+# Doorman Runtime Audit Logs
+doorman-audit.jsonl
