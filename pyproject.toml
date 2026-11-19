@@ -41,8 +41,3 @@ testpaths = [
 ]
 pythonpath = ["."]
 
-[tool.pytest.ini_options]
-filterwarnings = [
-    "ignore: 'asyncio.iscoroutinefunction' is deprecated:DeprecationWarning",
-    "ignore: datetime.datetime.utcnow\\(\\) is deprecated:DeprecationWarning"
-]
