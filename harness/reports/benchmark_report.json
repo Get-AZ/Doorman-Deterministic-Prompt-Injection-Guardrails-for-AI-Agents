@@ -1,31 +1,15 @@
 {
-  "timestamp": "2026-11-16T00:44:05.458271Z",
-  "total_execution_time_seconds": 0.81,
-  "overall_status": "PASSED",
-  "suites": {
-    "red_team_attack_vectors": {
-      "total_vectors": 60,
-      "families": [
-        "INJ",
-        "TAMPER",
-        "OBF",
-        "SPLIT",
-        "META",
-        "PRIV"
-      ],
-      "attack_success_rate": 0.0,
-      "blocked_count": 60,
-      "passed": true,
-      "duration_seconds": 0.74,
-      "raw_output": "============================= test session starts =============================\nplatform win32 -- Python 3.15.2, pytest-9.2.0, pluggy-1.7.0 -- C:\\Users\\hiw\\Desktop\\Doorman-Security-Harness\\.venv\\Scripts\\python.exe\ncachedir: .pytest_cache\nrootdir: C:\\Users\\hiw\\Desktop\\Doorman-Security-Harness\nconfigfile: pyproject.toml\ncollecting ... collected 60 items\n\nharness/test_runner.py::test_red_team_attack_vector[INJ-001] PASSED      [  1%]\nharness/test_runner.py::test_red_team_attack_vector[INJ-002] PASSED      [  3%]\nharness/test_runner.py::test_red_team_attack_vector[INJ-003] PASSED      [  5%]\nharness/test_runner.py::test_red_team_attack_vector[INJ-004] PASSED      [  6%]\nharness/test_runner.py::test_red_team_attack_vector[INJ-005] PASSED      [  8%]\nharness/test_runner.py::test_red_team_attack_vector[INJ-006] PASSED      [ 10%]\nharness/test_runner.py::test_red_team_attack_vector[INJ-007] PASSED      [ 11%]\nharness/test_runner.py::test_red_team_attack_vector[INJ-008] PASSED      [ 13%]\nharness/test_runner.py::test_red_team_attack_vector[INJ-009] PASSED      [ 15%]\nharness/test_runner.py::test_red_team_attack_vector[INJ-010] PASSED      [ 16%]\nharness/test_runner.py::test_red_team_attack_vector[TAMPER-001] PASSED   [ 18%]\nharness/test_runner.py::test_red_team_attack_vector[TAMPER-002] PASSED   [ 20%]\nharness/test_runner.py::test_red_team_attack_vector[TAMPER-003] PASSED   [ 21%]\nharness/test_runner.py::test_red_team_attack_vector[TAMPER-004] PASSED   [ 23%]\nharness/test_runner.py::test_red_team_attack_vector[TAMPER-005] PASSED   [ 25%]\nharness/test_runner.py::test_red_team_attack_vector[TAMPER-006] PASSED   [ 26%]\nharness/test_runner.py::test_red_team_attack_vector[TAMPER-007] PASSED   [ 28%]\nharness/test_runner.py::test_red_team_attack_vector[TAMPER-008] PASSED   [ 30%]\nharness/test_runner.py::test_red_team_attack_vector[TAMPER-009] PASSED   [ 31%]\nharness/test_runner.py::test_red_team_attack_vector[TAMPER-010] PASSED   [ 33%]\nharness/test_runner.py::test_red_team_attack_vector[OBF-001] PASSED      [ 35%]\nharness/test_runner.py::test_red_team_attack_vector[OBF-002] PASSED      [ 36%]\nharness/test_runner.py::test_red_team_attack_vector[OBF-003] PASSED      [ 38%]\nharness/test_runner.py::test_red_team_attack_vector[OBF-004] PASSED      [ 40%]\nharness/test_runner.py::test_red_team_attack_vector[OBF-005] PASSED      [ 41%]\nharness/test_runner.py::test_red_team_attack_vector[OBF-006] PASSED      [ 43%]\nharness/test_runner.py::test_red_team_attack_vector[OBF-007] PASSED      [ 45%]\nharness/test_runner.py::test_red_team_attack_vector[OBF-008] PASSED      [ 46%]\nharness/test_runner.py::test_red_team_attack_vector[OBF-009] PASSED      [ 48%]\nharness/test_runner.py::test_red_team_attack_vector[OBF-010] PASSED      [ 50%]\nharness/test_runner.py::test_red_team_attack_vector[SPLIT-001] PASSED    [ 51%]\nharness/test_runner.py::test_red_team_attack_vector[SPLIT-002] PASSED    [ 53%]\nharness/test_runner.py::test_red_team_attack_vector[SPLIT-003] PASSED    [ 55%]\nharness/test_runner.py::test_red_team_attack_vector[SPLIT-004] PASSED    [ 56%]\nharness/test_runner.py::test_red_team_attack_vector[SPLIT-005] PASSED    [ 58%]\nharness/test_runner.py::test_red_team_attack_vector[SPLIT-006] PASSED    [ 60%]\nharness/test_runner.py::test_red_team_attack_vector[SPLIT-007] PASSED    [ 61%]\nharness/test_runner.py::test_red_team_attack_vector[SPLIT-008] PASSED    [ 63%]\nharness/test_runner.py::test_red_team_attack_vector[SPLIT-009] PASSED    [ 65%]\nharness/test_runner.py::test_red_team_attack_vector[SPLIT-010] PASSED    [ 66%]\nharness/test_runner.py::test_red_team_attack_vector[META-001] PASSED     [ 68%]\nharness/test_runner.py::test_red_team_attack_vector[META-002] PASSED     [ 70%]\nharness/test_runner.py::test_red_team_attack_vector[META-003] PASSED     [ 71%]\nharness/test_runner.py::test_red_team_attack_vector[META-004] PASSED     [ 73%]\nharness/test_runner.py::test_red_team_attack_vector[META-005] PASSED     [ 75%]\nharness/test_runner.py::test_red_team_attack_vector[META-006] PASSED     [ 76%]\nharness/test_runner.py::test_red_team_attack_vector[META-007] PASSED     [ 78%]\nharness/test_runner.py::test_red_team_attack_vector[META-008] PASSED     [ 80%]\nharness/test_runner.py::test_red_team_attack_vector[META-009] PASSED     [ 81%]\nharness/test_runner.py::test_red_team_attack_vector[META-010] PASSED     [ 83%]\nharness/test_runner.py::test_red_team_attack_vector[PRIV-001] PASSED     [ 85%]\nharness/test_runner.py::test_red_team_attack_vector[PRIV-002] PASSED     [ 86%]\nharness/test_runner.py::test_red_team_attack_vector[PRIV-003] PASSED     [ 88%]\nharness/test_runner.py::test_red_team_attack_vector[PRIV-004] PASSED     [ 90%]\nharness/test_runner.py::test_red_team_attack_vector[PRIV-005] PASSED     [ 91%]\nharness/test_runner.py::test_red_team_attack_vector[PRIV-006] PASSED     [ 93%]\nharness/test_runner.py::test_red_team_attack_vector[PRIV-007] PASSED     [ 95%]\nharness/test_runner.py::test_red_team_attack_vector[PRIV-008] PASSED     [ 96%]\nharness/test_runner.py::test_red_team_attack_vector[PRIV-009] PASSED     [ 98%]\nharness/test_runner.py::test_red_team_attack_vector[PRIV-010] PASSED     [100%]\n\n============================= 60 passed in 0.07s =============================="
-    },
-    "benign_false_positives": {
-      "total_resumes": 100,
-      "false_positive_rate": 0.0,
-      "false_positives_detected": 0,
-      "passed": true,
-      "duration_seconds": 0.07,
-      "raw_output": "======================================================================\nDOORMAN SECURITY ENGINE \u2014 FALSE POSITIVE RATE (FPR) EVALUATION\n======================================================================\n\n[EVALUATION RESULTS]\nTotal Benign Resumes Evaluated : 100\nFalse Positives Triggered      : 0\nCalculated False Positive Rate : 0.00%\n\nSUCCESS: Zero false positives! Doorman successfully parsed all 100 technical resumes containing security terminology without disruption.\n======================================================================"
-    }
+  "timestamp": "2026-11-19T06:50:59.578459+00:00",
+  "overall_passed": true,
+  "total_duration_sec": 14.7953,
+  "red_team": {
+    "passed": true,
+    "exit_code": 0,
+    "duration_sec": 8.2324
+  },
+  "false_positive": {
+    "passed": true,
+    "exit_code": 0,
+    "duration_sec": 6.5625
   }
 }
