@@ -9,3 +9,11 @@ __pycache__/
 
 # Doorman Runtime Audit Logs
 doorman-audit.jsonl
+
+__pycache__/
+*.py[cod]
+dist/
+build/
+*.egg-info/
+.venv/
+.pytest_cache/

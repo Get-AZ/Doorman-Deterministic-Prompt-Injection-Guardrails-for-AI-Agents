@@ -34,7 +34,10 @@ include = ["doorman*", "harness*"]
 doorman = ["data/anchors/*.json"]
 
 [tool.pytest.ini_options]
-filterwarnings = [
-    "ignore: 'asyncio.iscoroutinefunction' is deprecated:DeprecationWarning",
-    "ignore: datetime.datetime.utcnow\\(\\) is deprecated:DeprecationWarning"
+minversion = "6.0"
+addopts = "-ra -q"
+testpaths = [
+    "tests",
 ]
+pythonpath = ["."]
+
