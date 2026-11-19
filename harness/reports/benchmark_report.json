@@ -1,15 +1,15 @@
 {
-  "timestamp": "2026-11-19T18:43:36.658538+00:00",
+  "timestamp": "2026-11-19T19:23:19.831877+00:00",
   "overall_passed": true,
-  "total_duration_sec": 14.5489,
+  "total_duration_sec": 12.6015,
   "red_team": {
     "passed": true,
     "exit_code": 0,
-    "duration_sec": 7.9308
+    "duration_sec": 7.1153
   },
   "false_positive": {
     "passed": true,
     "exit_code": 0,
-    "duration_sec": 6.6176
+    "duration_sec": 5.4857
   }
 }
