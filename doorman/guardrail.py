@@ -1,36 +1,27 @@
-from doorman.ast_rules import check_ast_rules
-from doorman.gates.semantic import check_semantic_gate
+from doorman.scanner import GuardrailScanner
 
 
 class DoormanGuardrail:
-    def __init__(self, semantic_threshold: float = 0.85):
+    """Multi-tier prompt injection guardrail wrapping GuardrailScanner."""
+
+    def __init__(self, semantic_threshold: float = 0.85, scanner: GuardrailScanner | None = None):
         self.semantic_threshold = semantic_threshold
+        self.scanner = scanner if scanner is not None else GuardrailScanner()
+        semantic_gate = getattr(self.scanner, "semantic_gate", None)
+        if semantic_gate is not None and hasattr(semantic_gate, "threshold"):
+            semantic_gate.threshold = semantic_threshold
 
     def evaluate(self, prompt: str) -> dict:
-        """
-        Evaluate a prompt across Doorman's defense tiers:
-        - Tier 1: Deterministic AST / rule check
-        - Tier 2: Semantic embedding / similarity gate
-        """
-        if check_ast_rules(prompt):
-            return {
-                "allowed": False,
-                "tier": "tier_1_ast",
-                "reason": "Matched Tier 1 deterministic rule.",
-            }
-
-        tier_2_blocked, confidence = check_semantic_gate(
-            prompt, threshold=self.semantic_threshold
-        )
-        if tier_2_blocked:
-            return {
-                "allowed": False,
-                "tier": "tier_2_semantic",
-                "reason": f"Flagged by semantic gate with confidence {confidence:.4f}.",
-            }
+        verdict = self.scanner.scan(prompt)
+        flagged = bool(getattr(verdict, "is_flagged", False))
+        tier = getattr(verdict, "tier", None)
 
         return {
-            "allowed": True,
-            "tier": None,
-            "reason": "Passed all security guardrail tiers.",
+            "allowed": not flagged,
+            "tier": tier if flagged else None,
+            "reason": getattr(
+                verdict,
+                "reason",
+                f"Flagged by {tier}." if flagged else "Passed all security guardrail tiers.",
+            ),
         }
